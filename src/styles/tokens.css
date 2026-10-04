@@ -1,0 +1,80 @@
+/*
+ * Design tokens from Paper (Portfolio file, "Portfolio EN" page).
+ * Light values: 6-Final-home-desktop, with Index-desktop-light for anything 6-Final doesn't set.
+ * Dark values: Index-desktop-dark. See docs/design-spec.md.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  /* Colour */
+  --color-bg: #ffffff;
+  --color-text: #111111;
+  --color-muted: #6b6b6b;
+  --color-divider: #ededec;
+  --color-hover: #f3f3f2;
+  --color-live: #22a55b;
+  --color-underline: #d4d4d4;
+  --color-kbd-border: #dcdcd8;
+
+  /* Type: --font-sans / --font-mono come from Astro's font config. */
+  --text-sm: 12px;
+  --text-label: 12px;
+  --text-kbd: 11px;
+  --text-link: 14px;
+  --text-body: 15px;
+  --text-h1: 22px;
+  --text-h1-mobile: 21px;
+
+  --leading-meta: 16px;
+  --leading-link: 20px;
+  --leading-row: 22px;
+  --leading-body: 24px;
+  --leading-h1: 30px;
+  --leading-h1-mobile: 28px;
+
+  --tracking-label: 0.08em;
+  --tracking-tag: 0.04em;
+  --tracking-h1: -0.015em;
+  --tracking-mark: -0.02em;
+
+  /* Layout */
+  --column: 720px;
+  --inset: 20px;
+  --gap-block: 64px;
+  --page-top: 128px;
+  --page-bottom: 96px;
+
+  /* Shape */
+  --radius-row: 10px;
+  --radius-mark: 8px;
+  --radius-kbd: 4px;
+  --mark-size: 28px;
+  --dot-size: 6px;
+  --focus-ring: 2px solid var(--color-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0e0e0e;
+    --color-text: #ededed;
+    --color-muted: #8a8a8a;
+    --color-divider: #222222;
+    --color-hover: #1a1a1a;
+    --color-live: #34c77b;
+    --color-underline: #3a3a3a;
+    --color-kbd-border: #333333;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --text-h1: var(--text-h1-mobile);
+    --leading-h1: var(--leading-h1-mobile);
+    --inset: 0px;
+    --gap-block: 48px;
+    --page-top: 56px;
+    --page-bottom: 48px;
+    --mark-size: 30px;
+  }
+}
