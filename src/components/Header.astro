@@ -1,11 +1,5 @@
 ---
 import { site } from "../data/site";
-
-const nav = [
-  { label: "Projects", href: "#projects", current: true },
-  { label: "About", href: "#about", current: false },
-  { label: "Contact", href: "#contact", current: false },
-];
 ---
 
 <header class="header">
@@ -13,35 +7,12 @@ const nav = [
     <span class="mark" aria-hidden="true">{site.monogram}</span>
     <span>{site.handle}</span>
   </a>
-
-  <nav class="nav" aria-label="Main">
-    <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-list">
-      <span class="sr-only">Menu</span>
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-        <path d="M3 7h14M3 13h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-      </svg>
-    </button>
-    <ul class="nav-list" id="nav-list">
-      {
-        nav.map((item) => (
-          <li>
-            <a class:list={["nav-link", { current: item.current }]} href={item.href}>
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
 </header>
 
 <style>
   .header {
-    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
     padding-inline: var(--inset);
   }
 
@@ -66,98 +37,4 @@ const nav = [
     line-height: 16px;
     letter-spacing: var(--tracking-mark);
   }
-
-  .nav-list {
-    display: flex;
-    gap: 20px;
-    font-size: var(--text-link);
-    line-height: var(--leading-link);
-  }
-
-  .nav-link {
-    color: var(--color-muted);
-    transition: color 0.15s ease;
-  }
-
-  .nav-link:hover,
-  .nav-link.current {
-    color: var(--color-text);
-  }
-
-  .menu-button {
-    display: none;
-  }
-
-  @media (max-width: 640px) {
-    .menu-button {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      width: 44px;
-      height: 44px;
-      margin-right: -2px;
-      padding: 0;
-      border: 0;
-      border-radius: var(--radius-row);
-      background: none;
-      color: var(--color-text);
-      cursor: pointer;
-    }
-
-    /* Without JS the links stay visible inline. */
-    :global(.js) .nav-list {
-      position: absolute;
-      top: calc(100% + 4px);
-      right: 0;
-      z-index: 10;
-      flex-direction: column;
-      gap: 0;
-      min-width: 168px;
-      padding: 6px;
-      border: 1px solid var(--color-divider);
-      border-radius: 12px;
-      background: var(--color-bg);
-    }
-
-    :global(.js) .nav:not([data-open]) .nav-list {
-      display: none;
-    }
-
-    :global(.js) .nav-link {
-      display: block;
-      padding: 10px 12px;
-      border-radius: 8px;
-      color: var(--color-text);
-    }
-
-    :global(html:not(.js)) .menu-button {
-      display: none;
-    }
-  }
 </style>
-
-<script>
-  const nav = document.querySelector<HTMLElement>(".nav");
-  const button = nav?.querySelector<HTMLButtonElement>(".menu-button");
-
-  if (nav && button) {
-    const setOpen = (open: boolean) => {
-      nav.toggleAttribute("data-open", open);
-      button.setAttribute("aria-expanded", String(open));
-    };
-
-    button.addEventListener("click", () => setOpen(!nav.hasAttribute("data-open")));
-    nav.addEventListener("click", (event) => {
-      if ((event.target as HTMLElement).closest(".nav-link")) setOpen(false);
-    });
-    document.addEventListener("click", (event) => {
-      if (!nav.contains(event.target as Node)) setOpen(false);
-    });
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && nav.hasAttribute("data-open")) {
-        setOpen(false);
-        button.focus();
-      }
-    });
-  }
-</script>
