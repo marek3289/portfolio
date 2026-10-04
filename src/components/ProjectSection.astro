@@ -9,15 +9,10 @@ interface Props {
 }
 
 const { id, label, projects } = Astro.props;
-const count = String(projects.length).padStart(2, "0");
 ---
 
 <section class="section" aria-labelledby={id}>
-  <h2 class="label" id={id}>
-    <span>{label}</span>
-    <span aria-hidden="true">{count}</span>
-    <span class="sr-only">({projects.length} projects)</span>
-  </h2>
+  <h2 class="label" id={id}>{label}</h2>
   <ul class="rows">
     {projects.map((project) => <ProjectRow project={project} />)}
   </ul>
@@ -31,8 +26,6 @@ const count = String(projects.length).padStart(2, "0");
   }
 
   .label {
-    display: flex;
-    justify-content: space-between;
     padding: 0 20px 8px;
     font-family: var(--font-mono);
     font-size: var(--text-label);

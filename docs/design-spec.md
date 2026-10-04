@@ -41,8 +41,8 @@ Fonts: Geist 400/500/600 for all text, Geist Mono 400/500 for labels, metadata a
   - Contact links: Geist 14/20 with a 1px underline in `--underline`, offset 4px, 18px gap.
   - The intro has 24px between groups and 12px within the text group.
 - **Section**:
-  - Label: Geist Mono 12/16 with 0.08em tracking, uppercase, `--muted`, padding 0 20px 8px,
-    and the count on the right.
+  - Label: Geist Mono 12/16 with 0.08em tracking, uppercase, `--muted`, padding 0 20px 8px.
+    No count, no divider.
   - Rows are 4px apart.
 - **Row**:
   - Padding 10px 20px, radius 10, 16px gap.
@@ -113,10 +113,10 @@ Index-mobile-light / -dark are only a fallback here (for example, the dark colou
 13. **Metrics** (4.8★ · 12k users, 1.2k ★, ~600 readers): only in 6-Final. **Kept**, as an
     optional `metric` field on each project.
 14. **Section label**: 6-Final uses 12px with no divider and no count; Index uses 11px with a
-    divider and a count. **6-Final's size, with no divider.** The count from Index is
-    **included** because the brief asks for computed counts.
+    divider and a count. **6-Final's size, with no divider.** ~~The count from Index is
+    included~~. Superseded by decision 27: removed.
 15. **Stats line**: 6-Final links to a /log page that is out of scope. **Rendered as plain text
-    without the arrow**, computed from the data.
+    without the arrow**, computed from the data. There is no /log page for now.
 16. **Hover and divider colours**: 6-Final #F3F3F2 / #EDEDEC, Index #F4F4F2 / #ECECEA.
     **6-Final.**
 17. **Footer time**: 6-Final "14:32 CET", Index "14:32 local time". **6-Final**: time plus the
@@ -132,7 +132,8 @@ Index-mobile-light / -dark are only a fallback here (for example, the dark colou
 22. **Mobile monogram and H1**: 6-Final 28px and 20/27; Index 30px and 21/28. **6-Final.**
 23. **Mobile rows**: 6-Final uses padding 12/20 with the dot hanging in the padding; Index uses
     padding 14/0 with the dot inline. **6-Final.**
-24. **Mobile section label**: 6-Final has no divider; Index has one. **6-Final.** The count
-    is kept, as on desktop.
+24. **Mobile section label**: 6-Final has no divider; Index has one. **6-Final.**
 25. **Mobile footer**: 6-Final keeps items on one wrapping row; Index stacks them. **6-Final.**
 26. **Nav**: removed. 6-Final has no nav on desktop or mobile; this reverses decision 4.
+27. **Section counts** ("03" / "04"): removed. 6-Final has none; this reverses the count
+    part of decision 14.
