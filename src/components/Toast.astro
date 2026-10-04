@@ -1,0 +1,40 @@
+---
+// A single polite live region. Show it with:
+// document.dispatchEvent(new CustomEvent("toast", { detail: "Email copied" }))
+---
+
+<div class="toast mono" role="status" aria-live="polite" aria-atomic="true" data-toast>
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+    <path d="M2.5 6.2l2.2 2.2 4.8-4.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  </svg>
+  <span data-toast-text></span>
+</div>
+
+<style>
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    line-height: 16px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, 8px);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .toast[data-visible] {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+import { site } from "../data/site";
+
+const updated = site.updated.toLocaleDateString("en-GB", { month: "short", year: "numeric", timeZone: "UTC" });
+---
+
+<footer class="footer mono" data-email={site.email} data-time-zone={site.timeZone}>
+  <span>Updated {updated}</span>
+  <time class="clock" data-clock aria-label="Local time"></time>
+  <span class="hint" data-copy-hint>
+    Press <kbd>C</kbd> to copy email
+  </span>
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 20px;
+    padding: 20px var(--inset) 0;
+    border-top: 1px solid var(--color-divider);
+    line-height: var(--leading-meta);
+  }
+
+  /* Reserve the clock's width so filling it in doesn't shift the hint. */
+  .clock {
+    min-width: 9ch;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+  }
+
+  kbd {
+    padding: 1px 5px;
+    border: 1px solid var(--color-kbd-border);
+    border-radius: var(--radius-kbd);
+    font-family: var(--font-mono);
+    font-size: var(--text-kbd);
+    font-weight: 500;
+    line-height: 14px;
+    color: var(--color-text);
+  }
+
+  /* No physical keyboard: hide the hint. */
+  @media (max-width: 640px), (hover: none) {
+    .hint {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 18px;
+    }
+  }
+</style>

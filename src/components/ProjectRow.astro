@@ -1,0 +1,159 @@
+---
+import type { Project } from "../data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const live = project.status === "now";
+const sunset = project.status === "sunset";
+// Sunset projects are never links, even if a url is left in the data.
+const href = sunset ? undefined : project.url;
+const Tag = href ? "a" : "div";
+const linkProps = href ? { href, target: "_blank", rel: "noopener" } : {};
+---
+
+<li>
+  <Tag class:list={["row", { sunset, link: !!href }]} {...linkProps}>
+    {live && <span class="dot" aria-hidden="true" />}
+    <span class="main">
+      <span class="name">
+        {project.name}
+        {href && <span aria-hidden="true">{" ↗"}</span>}
+        {href && <span class="sr-only">(opens in a new tab)</span>}
+        {live && <span class="sr-only">(in progress)</span>}
+      </span>
+      <span class="description">{project.description}</span>
+      {project.metric && <span class="mono extra">{project.metric}</span>}
+      {sunset && <span class="mono extra tag">Sunset</span>}
+    </span>
+    <span class="mono meta">{project.type} · {project.year}</span>
+  </Tag>
+</li>
+
+<style>
+  .row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 20px;
+    border-radius: var(--radius-row);
+    line-height: var(--leading-row);
+    transition: background-color 0.15s ease;
+  }
+
+  .row:focus-visible {
+    border-radius: var(--radius-row);
+  }
+
+  @media (hover: hover) and (min-width: 641px) {
+    .row.link:hover {
+      background: var(--color-hover);
+    }
+  }
+
+  .dot {
+    position: absolute;
+    left: 6px;
+    top: 18px;
+    width: var(--dot-size);
+    height: var(--dot-size);
+    border-radius: 50%;
+    background: var(--color-live);
+  }
+
+  .main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 8px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .name {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .description {
+    color: var(--color-muted);
+  }
+
+  .extra,
+  .meta {
+    line-height: var(--leading-row);
+    white-space: nowrap;
+  }
+
+  .tag {
+    letter-spacing: var(--tracking-tag);
+    text-transform: uppercase;
+  }
+
+  .meta {
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .sunset .name {
+    color: var(--color-muted);
+  }
+
+  /* Mobile (Index-mobile-light): name / description / "type · year · metric", no hover. */
+  @media (max-width: 640px) {
+    .row {
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0;
+      padding: 14px 0;
+    }
+
+    .main {
+      display: contents;
+    }
+
+    .dot {
+      position: static;
+      order: 0;
+      margin-right: 8px;
+      align-self: center;
+    }
+
+    .name {
+      order: 1;
+      flex-basis: 100%;
+    }
+
+    /* Keep the inline dot on the same line as the name. */
+    .dot + .main .name {
+      flex-basis: calc(100% - var(--dot-size) - 8px);
+    }
+
+    .description {
+      order: 2;
+      flex-basis: 100%;
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    .meta {
+      order: 3;
+      margin-top: 4px;
+      text-align: left;
+      line-height: 18px;
+    }
+
+    .extra {
+      order: 4;
+      margin-top: 4px;
+      line-height: 18px;
+    }
+
+    .extra::before {
+      content: "\00a0·\00a0";
+    }
+  }
+</style>

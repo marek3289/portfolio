@@ -1,4 +1,42 @@
 ---
-import { Font } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Intro from "../components/Intro.astro";
+import ProjectSection from "../components/ProjectSection.astro";
+import Footer from "../components/Footer.astro";
+import Toast from "../components/Toast.astro";
+import { nowProjects, shippedProjects, stats } from "../data/projects";
 ---
-<html lang="en"><head><meta charset="utf-8" /><title>test</title><Font cssVariable="--font-sans" preload /><Font cssVariable="--font-mono" preload /></head><body style="font-family: var(--font-sans)">hi</body></html>
+
+<Base>
+  <div class="page">
+    <Header />
+    <main class="main" id="main">
+      <Intro />
+      <div class="projects" id="projects">
+        <ProjectSection id="now" label="Now" projects={nowProjects} />
+        <ProjectSection id="shipped" label="Shipped" projects={shippedProjects} />
+      </div>
+      <p class="stats">
+        {stats.total} projects · {stats.shipped} shipped · {stats.failed} failed · {stats.inProgress} in progress
+      </p>
+    </main>
+    <Footer />
+  </div>
+  <Toast />
+</Base>
+
+<style>
+  .main,
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-block);
+  }
+
+  .stats {
+    padding-inline: var(--inset);
+    font-size: var(--text-link);
+    line-height: var(--leading-link);
+  }
+</style>
