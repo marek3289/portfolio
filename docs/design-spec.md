@@ -26,9 +26,8 @@ Fonts: Geist 400/500/600 for all text, Geist Mono 400/500 for labels, metadata a
 
 ## Desktop layout (1440px)
 
-- Page padding is 128px top and 96px bottom. The column is 720px wide and sits 220px from the
-  left edge at 1440px (implemented as `max(24px, 50vw - 500px)` so it keeps that offset from
-  centre). Blocks inside the column have a 20px inset, so the text lane is 680px. Rows span the
+- Page padding is 128px top and 96px bottom. The column is 720px wide and centred (at 1440px
+  it sits 360px from each edge). Blocks inside the column have a 20px inset, so the text lane is 680px. Rows span the
   full 720px, so their hover background extends 20px past the text on both sides.
 - Major blocks are 64px apart.
 - **Header**: just the brand.
@@ -91,7 +90,7 @@ Index-mobile-light / -dark are only a fallback here (for example, the dark colou
 ## Conflicts resolved
 
 1. **Column width and position**: 6-Final has a 720px column 220px from the left; Index has
-   620px centred. **6-Final.**
+   620px centred. **6-Final's 720px width, centred** (decision 28).
 2. **Top padding**: 6-Final 128px, Index 112px. **6-Final.**
 3. **Monogram**: 6-Final 28px with radius 8 and a 10px gap; Index 32px with radius 9 and a
    12px gap. **6-Final** on desktop; Index's 30px on mobile.
@@ -137,3 +136,5 @@ Index-mobile-light / -dark are only a fallback here (for example, the dark colou
 26. **Nav**: removed. 6-Final has no nav on desktop or mobile; this reverses decision 4.
 27. **Section counts** ("03" / "04"): removed. 6-Final has none; this reverses the count
     part of decision 14.
+28. **Column position**: the owner wants the content centred, so the 720px column is
+    centred instead of sitting 220px from the left as in 6-Final.

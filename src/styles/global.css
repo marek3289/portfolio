@@ -71,11 +71,11 @@ a {
   white-space: nowrap;
 }
 
-/* Desktop: 720px column, 220px from the left at 1440px.
+/* Desktop: 720px column, centred.
    Mobile: 4px gutters; blocks add the 20px inset, so text sits 24px from the edge. */
 .page {
   width: min(var(--column), 100% - 48px);
-  margin-left: max(24px, 50vw - 500px);
+  margin-inline: auto;
   padding: var(--page-top) 0 var(--page-bottom);
 }
 
