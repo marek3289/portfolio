@@ -38,3 +38,23 @@
     transform: translate(-50%, 0);
   }
 </style>
+
+<script>
+  const toast = document.querySelector<HTMLElement>("[data-toast]");
+  const text = toast?.querySelector<HTMLElement>("[data-toast-text]");
+  let hide: ReturnType<typeof setTimeout> | undefined;
+
+  if (toast && text) {
+    document.addEventListener("toast", (event) => {
+      const message = (event as CustomEvent<string>).detail;
+      // Clear first so screen readers announce a repeated message again.
+      text.textContent = "";
+      requestAnimationFrame(() => {
+        text.textContent = message;
+        toast.toggleAttribute("data-visible", true);
+      });
+      clearTimeout(hide);
+      hide = setTimeout(() => toast.removeAttribute("data-visible"), 2000);
+    });
+  }
+</script>

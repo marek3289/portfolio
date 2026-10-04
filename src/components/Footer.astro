@@ -6,7 +6,7 @@ const updated = site.updated.toLocaleDateString("en-GB", { month: "short", year:
 
 <footer class="footer mono" data-email={site.email} data-time-zone={site.timeZone}>
   <span>Updated {updated}</span>
-  <time class="clock" data-clock aria-label="Local time"></time>
+  <time class="clock" data-clock></time>
   <span class="hint" data-copy-hint>
     Press <kbd>C</kbd> to copy email
   </span>
@@ -63,3 +63,51 @@ const updated = site.updated.toLocaleDateString("en-GB", { month: "short", year:
     }
   }
 </style>
+
+<script>
+  const footer = document.querySelector<HTMLElement>(".footer");
+
+  if (footer) {
+    const { email = "", timeZone } = footer.dataset;
+
+    // Local clock, e.g. "14:32 CET". Updates on the minute.
+    const clock = footer.querySelector<HTMLTimeElement>("[data-clock]");
+    if (clock) {
+      const format = new Intl.DateTimeFormat("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone,
+        timeZoneName: "short",
+      });
+      const tick = () => {
+        const now = new Date();
+        clock.textContent = format.format(now);
+        clock.dateTime = now.toISOString();
+      };
+      tick();
+      setTimeout(() => {
+        tick();
+        setInterval(tick, 60_000);
+      }, 60_000 - (Date.now() % 60_000));
+    }
+
+    // Press C to copy the email address.
+    const isTyping = (target: EventTarget | null) =>
+      target instanceof HTMLElement &&
+      (target.isContentEditable || target.closest("input, textarea, select") !== null);
+
+    document.addEventListener("keydown", async (event) => {
+      if (event.key.toLowerCase() !== "c" || event.repeat) return;
+      if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+      if (isTyping(event.target)) return;
+
+      let message = "Email copied";
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch {
+        message = email; // Clipboard blocked: at least show the address.
+      }
+      document.dispatchEvent(new CustomEvent("toast", { detail: message }));
+    });
+  }
+</script>
