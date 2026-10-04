@@ -18,4 +18,4 @@ npm run preview  # serve the built site
   metric). The stats line is computed from it.
 - `astro.config.mjs`: `site` (your domain, used for canonical and OG URLs).
 - `public/favicon.svg`: monogram favicon.
-- `src/styles/tokens.css`: colours, type sizes and spacing, light and dark.
+- `src/styles/tokens.css`: colours, type sizes and spacing (light theme only).

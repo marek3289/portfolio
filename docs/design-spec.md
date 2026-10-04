@@ -11,7 +11,9 @@ Merge rule: where both specify the same thing, 6-Final wins. Where 6-Final is si
 
 ## Tokens
 
-| Token | Light | Dark | Source |
+The site is light only (decision 29). The dark values are kept for reference and are not used.
+
+| Token | Light | Dark (unused) | Source |
 |---|---|---|---|
 | `--bg` | #FFFFFF | #0E0E0E | both / Index dark |
 | `--text` | #111111 | #EDEDED | both / Index dark |
@@ -62,7 +64,7 @@ Fonts: Geist 400/500/600 for all text, Geist Mono 400/500 for labels, metadata a
 
 ## Mobile (≤ 640px): from 6-Final-home-mobile
 
-Index-mobile-light / -dark are only a fallback here (for example, the dark colours).
+Index-mobile-light is only a fallback here.
 
 - **Spacing:** 4px page gutters, and blocks keep the 20px inset, so text sits 24px from the
   edge and rows span 382px. Top padding 40px, bottom 56px, 48px between blocks.
@@ -138,3 +140,6 @@ Index-mobile-light / -dark are only a fallback here (for example, the dark colou
     part of decision 14.
 28. **Column position**: the owner wants the content centred, so the 720px column is
     centred instead of sitting 220px from the left as in 6-Final.
+29. **Theme**: light only, at the owner's request. The dark theme (`prefers-color-scheme`)
+    has been removed; the page no longer follows the system setting. The favicon still
+    adapts to a dark browser tab bar so it stays visible.

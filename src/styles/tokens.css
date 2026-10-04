@@ -1,11 +1,11 @@
 /*
  * Design tokens from Paper (Portfolio file, "Portfolio EN" page).
  * Light values: 6-Final-home-desktop, with Index-desktop-light for anything 6-Final doesn't set.
- * Dark values: Index-desktop-dark. See docs/design-spec.md.
+ * Light only: the site always uses the light theme. See docs/design-spec.md.
  */
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 
   /* Colour */
   --color-bg: #ffffff;
@@ -53,19 +53,6 @@
   --mark-size: 28px;
   --dot-size: 6px;
   --focus-ring: 2px solid var(--color-text);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #0e0e0e;
-    --color-text: #ededed;
-    --color-muted: #8a8a8a;
-    --color-divider: #222222;
-    --color-hover: #1a1a1a;
-    --color-live: #34c77b;
-    --color-underline: #3a3a3a;
-    --color-kbd-border: #333333;
-  }
 }
 
 /* Mobile: 6-Final-home-mobile. */
