@@ -24,14 +24,14 @@
   --text-link: 14px;
   --text-body: 15px;
   --text-h1: 22px;
-  --text-h1-mobile: 21px;
+  --text-h1-mobile: 20px;
 
   --leading-meta: 16px;
   --leading-link: 20px;
   --leading-row: 22px;
   --leading-body: 24px;
   --leading-h1: 30px;
-  --leading-h1-mobile: 28px;
+  --leading-h1-mobile: 27px;
 
   --tracking-label: 0.08em;
   --tracking-tag: 0.04em;
@@ -68,15 +68,13 @@
   }
 }
 
+/* Mobile: 6-Final-home-mobile. */
 @media (max-width: 640px) {
   :root {
     --text-h1: var(--text-h1-mobile);
     --leading-h1: var(--leading-h1-mobile);
-    --inset: 0px;
     --gap-block: 48px;
-    --gap-header: 48px;
-    --page-top: 56px;
-    --page-bottom: 48px;
-    --mark-size: 30px;
+    --page-top: 40px;
+    --page-bottom: 56px;
   }
 }

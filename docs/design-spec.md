@@ -3,6 +3,7 @@
 Merged from Paper artboards in the "Portfolio" file, page "Portfolio EN":
 
 - **6-Final-home-desktop**: primary source of truth for content, structure and desktop layout.
+- **6-Final-home-mobile**: source of truth for the mobile layout (≤ 640px).
 - **Index-desktop-light / -dark, Index-mobile-light / -dark, Index-states**: design-system
   reference for everything 6-Final doesn't specify (dark mode, mobile, states, key cap, toast).
 
@@ -30,10 +31,9 @@ Fonts: Geist 400/500/600 for all text, Geist Mono 400/500 for labels, metadata a
   centre). Blocks inside the column have a 20px inset, so the text lane is 680px. Rows span the
   full 720px, so their hover background extends 20px past the text on both sides.
 - Major blocks are 64px apart.
-- **Header**:
+- **Header**: just the brand.
   - Monogram tile is 28×28, radius 8, "n." in Geist 15/600, colours inverted.
   - "northlight" is 15/500, with a 10px gap after the tile.
-  - Nav sits on the right (from Index).
 - **Intro**:
   - Headline: 22/30, weight 500, letter-spacing −0.015em.
   - About: 15/24 in `--muted`.
@@ -61,15 +61,24 @@ Fonts: Geist 400/500/600 for all text, Geist Mono 400/500 for labels, metadata a
   - The key cap comes from Index: 1px `--kbd-border`, radius 4, padding 1px 5px, 11/500 in
     `--text`.
 
-## Mobile (≤ 640px): from Index-mobile-light
+## Mobile (≤ 640px): from 6-Final-home-mobile
 
-- 20px side padding, 56px top, 48px between blocks.
-- Monogram is 30×30. Nav collapses into a 44×44 menu button with a two-line icon, which opens
-  a small disclosure menu.
-- H1 is 21/28.
-- Rows stack: name, then description, then metric and "type · year" on their own line.
-  Padding is 14px 0, no hover background, and the dot sits inline before the name.
-- Footer items stack; the "Press C" hint is hidden (also hidden on any `hover: none` device).
+Index-mobile-light / -dark are only a fallback here (for example, the dark colours).
+
+- **Spacing:** 4px page gutters, and blocks keep the 20px inset, so text sits 24px from the
+  edge and rows span 382px. Top padding 40px, bottom 56px, 48px between blocks.
+- **Header:** same as desktop. Monogram 28×28 radius 8, then 24px to the headline. No nav.
+- **H1:** 20/27, weight 500, −0.015em.
+- **Contact links:** 16px column gap, 8px row gap.
+- **Sections:** label as on desktop (12px mono, padding 0 20px 8px, no divider), 4px gaps.
+- **Rows:**
+  - Padding 12px 20px, with 2px row gap and 8px column gap.
+  - Stacked: name (15/22, weight 500), then description (14/21), then "type · year" in Mono
+    12/22 with 2px padding above, followed by "· metric" or "· SUNSET".
+  - The dot still hangs in the left padding (left 6px, top 20px).
+  - No hover background.
+- **Footer:** stays a wrapping row (16px column gap, 6px row gap), so "Updated Oct 2026" and
+  "14:32 CET" share one line. The "Press C" hint is hidden.
 
 ## States: from Index-states
 
@@ -86,8 +95,8 @@ Fonts: Geist 400/500/600 for all text, Geist Mono 400/500 for labels, metadata a
 2. **Top padding**: 6-Final 128px, Index 112px. **6-Final.**
 3. **Monogram**: 6-Final 28px with radius 8 and a 10px gap; Index 32px with radius 9 and a
    12px gap. **6-Final** on desktop; Index's 30px on mobile.
-4. **Nav**: 6-Final has none; Index has Projects / About / Contact. **Included from Index**,
-   because the brief asks for nav behaviour on mobile. It links to anchors on the page.
+4. **Nav**: 6-Final has none; Index has Projects / About / Contact. ~~Included from Index~~.
+   Superseded by decision 26: removed.
 5. **Contact links**: 6-Final uses Geist 14, underlined, with the plain email address; Index
    uses Mono 12.5 with "Email ↗". **6-Final.**
 6. **About colour and line height**: 6-Final 15/24 #6B6B6B, Index 15/25 #555555. **6-Final.**
@@ -114,5 +123,16 @@ Fonts: Geist 400/500/600 for all text, Geist Mono 400/500 for labels, metadata a
     time-zone abbreviation, which is CET or CEST depending on the date.
 18. **Footer key hint**: 6-Final uses plain text "Press C", Index has a key cap. **Index key
     cap** (a footer detail).
-19. **Mobile**: there is also a 6-Final-home-mobile board. The brief points to
-    Index-mobile-light for mobile, so that is followed.
+19. **Mobile source**: 6-Final-home-mobile is the source of truth. Index-mobile is only a
+    fallback (e.g. for dark colours). This replaces the earlier choice of Index-mobile-light.
+20. **Mobile gutters**: 6-Final-mobile uses 4px plus a 20px inset, so text is 24px from the
+    edge; Index uses 20px. **6-Final.**
+21. **Mobile top padding and header gap**: 6-Final 40px with 24px from the brand to the
+    headline; Index 56px with 48px. **6-Final.**
+22. **Mobile monogram and H1**: 6-Final 28px and 20/27; Index 30px and 21/28. **6-Final.**
+23. **Mobile rows**: 6-Final uses padding 12/20 with the dot hanging in the padding; Index uses
+    padding 14/0 with the dot inline. **6-Final.**
+24. **Mobile section label**: 6-Final has no divider; Index has one. **6-Final.** The count
+    is kept, as on desktop.
+25. **Mobile footer**: 6-Final keeps items on one wrapping row; Index stacks them. **6-Final.**
+26. **Nav**: removed. 6-Final has no nav on desktop or mobile; this reverses decision 4.

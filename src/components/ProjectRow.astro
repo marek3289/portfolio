@@ -111,34 +111,27 @@ const linkProps = href ? { href, target: "_blank", rel: "noopener" } : {};
     color: var(--color-muted);
   }
 
-  /* Mobile (Index-mobile-light): name / description / "type · year · metric", no hover. */
+  /* Mobile (6-Final-home-mobile): name / description / "type · year · metric".
+     The dot keeps hanging in the left padding; no hover background. */
   @media (max-width: 640px) {
     .row {
       flex-wrap: wrap;
       align-items: baseline;
-      gap: 0;
-      padding: 14px 0;
+      gap: 2px 8px;
+      padding: 12px var(--inset);
+    }
+
+    .dot {
+      top: 20px;
     }
 
     .main {
       display: contents;
     }
 
-    .dot {
-      position: static;
-      order: 0;
-      margin-right: 8px;
-      align-self: center;
-    }
-
     .name {
       order: 1;
       flex-basis: 100%;
-    }
-
-    /* Keep the inline dot on the same line as the name. */
-    .dot + .main .name {
-      flex-basis: calc(100% - var(--dot-size) - 8px);
     }
 
     .description {
@@ -150,19 +143,17 @@ const linkProps = href ? { href, target: "_blank", rel: "noopener" } : {};
 
     .meta {
       order: 3;
-      margin-top: 4px;
+      padding-top: 2px;
       text-align: left;
-      line-height: 18px;
     }
 
     .extra {
       order: 4;
-      margin-top: 4px;
-      line-height: 18px;
+      line-height: var(--leading-row);
     }
 
     .extra::before {
-      content: "\00a0·\00a0";
+      content: "· ";
     }
   }
 </style>

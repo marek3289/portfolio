@@ -71,15 +71,15 @@ a {
   white-space: nowrap;
 }
 
-/* Desktop: 720px column, 220px from the left at 1440px. Mobile: 20px gutters. */
+/* Desktop: 720px column, 220px from the left at 1440px.
+   Mobile: 4px gutters; blocks add the 20px inset, so text sits 24px from the edge. */
 .page {
   width: min(var(--column), 100% - 48px);
   margin-left: max(24px, 50vw - 500px);
   padding: var(--page-top) 0 var(--page-bottom);
 }
 
-/* 6-Final keeps the brand inside the intro block (24px to the headline);
-   mobile (Index-mobile) separates it with the regular block gap. */
+/* 6-Final keeps the brand inside the intro block: 24px to the headline. */
 .page > main {
   margin-top: var(--gap-header);
 }
@@ -91,7 +91,7 @@ a {
 @media (max-width: 640px) {
   .page {
     width: auto;
-    margin: 0 20px;
+    margin: 0 4px;
   }
 }
 
