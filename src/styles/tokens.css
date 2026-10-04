@@ -42,6 +42,7 @@
   --column: 720px;
   --inset: 20px;
   --gap-block: 64px;
+  --gap-header: 24px;
   --page-top: 128px;
   --page-bottom: 96px;
 
@@ -73,6 +74,7 @@
     --leading-h1: var(--leading-h1-mobile);
     --inset: 0px;
     --gap-block: 48px;
+    --gap-header: 48px;
     --page-top: 56px;
     --page-bottom: 48px;
     --mark-size: 30px;

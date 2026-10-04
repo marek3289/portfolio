@@ -76,9 +76,16 @@ a {
   width: min(var(--column), 100% - 48px);
   margin-left: max(24px, 50vw - 500px);
   padding: var(--page-top) 0 var(--page-bottom);
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-block);
+}
+
+/* 6-Final keeps the brand inside the intro block (24px to the headline);
+   mobile (Index-mobile) separates it with the regular block gap. */
+.page > main {
+  margin-top: var(--gap-header);
+}
+
+.page > footer {
+  margin-top: var(--gap-block);
 }
 
 @media (max-width: 640px) {

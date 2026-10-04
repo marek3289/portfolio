@@ -1,4 +1,5 @@
 ---
+import ArrowUpRight from "./ArrowUpRight.astro";
 import type { Project } from "../data/projects";
 
 interface Props {
@@ -20,7 +21,7 @@ const linkProps = href ? { href, target: "_blank", rel: "noopener" } : {};
     <span class="main">
       <span class="name">
         {project.name}
-        {href && <span aria-hidden="true">{" ↗"}</span>}
+        {href && <ArrowUpRight />}
         {href && <span class="sr-only">(opens in a new tab)</span>}
         {live && <span class="sr-only">(in progress)</span>}
       </span>
@@ -84,8 +85,16 @@ const linkProps = href ? { href, target: "_blank", rel: "noopener" } : {};
 
   .extra,
   .meta {
-    line-height: var(--leading-row);
     white-space: nowrap;
+  }
+
+  /* Smaller mono text: a tighter line box keeps baseline-aligned rows at 42px. */
+  .extra {
+    line-height: var(--leading-meta);
+  }
+
+  .meta {
+    line-height: var(--leading-row);
   }
 
   .tag {

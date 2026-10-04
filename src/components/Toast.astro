@@ -1,6 +1,6 @@
 ---
 // A single polite live region. Show it with:
-// document.dispatchEvent(new CustomEvent("toast", { detail: "Email copied" }))
+// document.dispatchEvent(new CustomEvent("toast", { detail: { message: "Email copied", ok: true } }))
 ---
 
 <div class="toast mono" role="status" aria-live="polite" aria-atomic="true" data-toast>
@@ -33,6 +33,10 @@
       transform 0.2s ease;
   }
 
+  .toast[data-error] svg {
+    display: none;
+  }
+
   .toast[data-visible] {
     opacity: 1;
     transform: translate(-50%, 0);
@@ -46,13 +50,14 @@
 
   if (toast && text) {
     document.addEventListener("toast", (event) => {
-      const message = (event as CustomEvent<string>).detail;
+      const { message, ok } = (event as CustomEvent<{ message: string; ok: boolean }>).detail;
+      toast.toggleAttribute("data-error", !ok);
       // Clear first so screen readers announce a repeated message again.
       text.textContent = "";
-      requestAnimationFrame(() => {
+      toast.toggleAttribute("data-visible", true);
+      setTimeout(() => {
         text.textContent = message;
-        toast.toggleAttribute("data-visible", true);
-      });
+      }, 50);
       clearTimeout(hide);
       hide = setTimeout(() => toast.removeAttribute("data-visible"), 2000);
     });
