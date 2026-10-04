@@ -3,18 +3,13 @@ export type ProjectStatus = "now" | "shipped" | "sunset";
 export interface Project {
   name: string;
   description: string;
-  /** Platform or kind, e.g. "iOS", "Web", "Open source". */
   type: string;
-  /** Display year, e.g. "2025" or "2025–now" for ongoing work. */
   year: string;
   status: ProjectStatus;
-  /** Live link. Rows with a url render as links with a ↗ marker; sunset rows never link. */
   url?: string;
-  /** One honest number shown next to the description, e.g. "12k users". */
   metric?: string;
 }
 
-// Order here is the order on the page. Placeholder URLs: swap in real ones.
 export const projects: Project[] = [
   {
     name: "Driftnote",
@@ -52,7 +47,7 @@ export const projects: Project[] = [
     type: "Open source",
     year: "2024",
     status: "shipped",
-    url: "https://github.com/northlight/fieldkit",
+    url: "https://github.com/marek3289/fieldkit",
     metric: "1.2k ★",
   },
   {
@@ -74,7 +69,6 @@ export const projects: Project[] = [
 ];
 
 export const nowProjects = projects.filter((p) => p.status === "now");
-// Sunset projects launched too, so they stay in the shipped section.
 export const shippedProjects = projects.filter((p) => p.status !== "now");
 
 export const stats = {

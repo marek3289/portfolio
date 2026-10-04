@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <style>rect{fill:#111}text{fill:#fff}@media (prefers-color-scheme:dark){rect{fill:#ededed}text{fill:#0e0e0e}}</style>
   <rect width="32" height="32" rx="9"/>
-  <text x="16" y="21.5" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" text-anchor="middle" letter-spacing="-0.4">n.</text>
+  <text x="16" y="21.5" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" text-anchor="middle" letter-spacing="-0.4">m.</text>
 </svg>

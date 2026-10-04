@@ -1,4 +1,4 @@
-# northlight
+# marqueeio
 
 Personal portfolio. Astro + plain CSS, no UI framework. Design source: Paper file
 "Portfolio", page "Portfolio EN" (see `docs/design-spec.md`).

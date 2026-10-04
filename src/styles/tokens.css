@@ -1,9 +1,3 @@
-/*
- * Design tokens from Paper (Portfolio file, "Portfolio EN" page).
- * Light values: 6-Final-home-desktop, with Index-desktop-light for anything 6-Final doesn't set.
- * Light only: the site always uses the light theme. See docs/design-spec.md.
- */
-
 :root {
   color-scheme: light;
 

@@ -1,4 +1,4 @@
-# Design spec: northlight portfolio
+# Design spec: marqueeio portfolio
 
 Merged from Paper artboards in the "Portfolio" file, page "Portfolio EN":
 
@@ -33,8 +33,8 @@ Fonts: Geist 400/500/600 for all text, Geist Mono 400/500 for labels, metadata a
   full 720px, so their hover background extends 20px past the text on both sides.
 - Major blocks are 64px apart.
 - **Header**: just the brand.
-  - Monogram tile is 28×28, radius 8, "n." in Geist 15/600, colours inverted.
-  - "northlight" is 15/500, with a 10px gap after the tile.
+  - Monogram tile is 28×28, radius 8, "m." in Geist 15/600, colours inverted.
+  - "marquee.io" is 15/500, with a 10px gap after the tile.
 - **Intro**:
   - Headline: 22/30, weight 500, letter-spacing −0.015em.
   - About: 15/24 in `--muted`.
