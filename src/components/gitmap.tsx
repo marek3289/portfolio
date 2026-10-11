@@ -45,43 +45,35 @@ export function Gitmap({
   const tooltipRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
   const [tooltipData, setTooltipData] = useState<{ date: string; count: number } | null>(null)
-  const lastCellData = useRef<{ date: string; count: number } | null>(null)
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement
-    const date = target.dataset.date
-    const count = target.dataset.count
+    const tooltip = tooltipRef.current
+    if (!tooltip) return
 
-    if (tooltipRef.current) {
-      tooltipRef.current.style.left = `${e.clientX}px`
-      tooltipRef.current.style.top = `${e.clientY}px`
+    tooltip.style.left = `${e.clientX}px`
+    tooltip.style.top = `${e.clientY}px`
+
+    const target = e.target
+    const cell = target instanceof Element ? target.closest('[data-date]') : null
+
+    if (cell instanceof HTMLElement && gridRef.current?.contains(cell)) {
+      const date = cell.dataset.date
+      const count = cell.dataset.count
 
       if (date && count !== undefined) {
-        target.removeAttribute('title')
-        const newData = { date, count: parseInt(count, 10) }
-        lastCellData.current = newData
-        setTooltipData(newData)
-      }
-
-      if (gridRef.current) {
-        const rect = gridRef.current.getBoundingClientRect()
-        const isInGrid = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom
-
-        if (isInGrid && lastCellData.current) {
-          tooltipRef.current.style.opacity = '1'
-        } else if (!isInGrid) {
-          tooltipRef.current.style.opacity = '0'
-        }
+        cell.removeAttribute('title')
+        const countValue = Number.parseInt(count, 10)
+        setTooltipData((current) => (current?.date === date && current.count === countValue ? current : { date, count: countValue }))
+        tooltip.style.opacity = '1'
+        return
       }
     }
+
+    tooltip.style.opacity = '0'
   }, [])
 
   const handleMouseLeave = useCallback(() => {
-    if (tooltipRef.current) {
-      tooltipRef.current.style.opacity = '0'
-    }
-
-    lastCellData.current = null
+    if (tooltipRef.current) tooltipRef.current.style.opacity = '0'
   }, [])
 
   return (

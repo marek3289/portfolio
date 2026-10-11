@@ -1,5 +1,4 @@
 ---
-import ArrowUpRight from './arrow-up-right.astro'
 import type { Project } from '@/types'
 
 interface Props {
@@ -17,17 +16,16 @@ const linkProps = href ? { href, target: '_blank', rel: 'noopener' } : {}
 <li>
   <Tag
     class:list={[
-      'group relative flex items-center gap-4 rounded-row px-inset py-2.5 text-row transition-colors duration-150',
+      'relative flex items-center gap-4 rounded-row px-inset py-2.5 text-row transition-colors duration-150',
       'mobile:flex-wrap mobile:items-baseline mobile:gap-x-2 mobile:gap-y-0.5 mobile:py-3',
       href && 'pointer-fine:hover:bg-accent',
     ]}
     {...linkProps}
   >
-    {live && <span class='absolute top-4.5 left-1.5 size-1.5 rounded-full bg-live mobile:top-5' aria-hidden='true' />}
+    {live && <span class='absolute top-4.5 left-0 size-1.5 rounded-full bg-live mobile:top-5' aria-hidden='true' />}
     <span class='flex min-w-0 flex-1 flex-wrap items-baseline gap-x-2 mobile:contents'>
       <span class:list={['font-medium whitespace-nowrap mobile:order-1 mobile:basis-full', sunset && 'text-muted-foreground']}>
         {project.name}
-        {href && <ArrowUpRight />}
         {href && <span class='sr-only'>(opens in a new tab)</span>}
         {live && <span class='sr-only'>(in progress)</span>}
       </span>

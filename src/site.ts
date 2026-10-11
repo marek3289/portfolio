@@ -11,11 +11,19 @@ export const site = {
     { label: 'X', href: 'https://x.com/marqueeio' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/marek3289' },
   ],
-  updated: new Date('2026-10-04'),
+  updated: new Date('2026-10-11'),
   timeZone: 'Europe/Warsaw',
 } as const
 
 export const projects: Project[] = [
+  {
+    name: 'TwójMentor.IT',
+    description: 'A Polish community to find an IT mentor, book a session, and chat.',
+    type: 'Web',
+    year: '2024–now',
+    status: 'now',
+    url: 'https://twojmentor.it/',
+  },
   {
     name: 'Driftnote',
     description: 'A calm journaling app with no streaks or nagging.',
