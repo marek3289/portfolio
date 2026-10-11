@@ -1,0 +1,32 @@
+---
+import { contributionCalendar } from '@/lib/contributions'
+import { Gitmap } from './gitmap'
+
+const calendar = contributionCalendar()
+const link = 'underline decoration-underline decoration-1 underline-offset-4 transition-[text-decoration-color] duration-150 hover:decoration-current'
+
+function calendarDate(iso: string): Date {
+  const [year, month, day] = iso.split('-').map(Number)
+  return new Date(year, month - 1, day)
+}
+---
+
+<figure class='m-0 flex min-w-0 flex-col gap-2'>
+  <figcaption class='text-link font-medium'>GitHub</figcaption>
+  <div class='cursor-default select-none overflow-x-auto scrollbar-thin [scrollbar-color:var(--border)_transparent]' role='img' aria-label={calendar.summary}>
+    <Gitmap
+      client:media='(hover: hover)'
+      contributions={calendar.contributions}
+      from={calendarDate(calendar.from)}
+      to={calendarDate(calendar.to)}
+      cellSize={10}
+      cellGap={2}
+      showMonths
+      showDays={false}
+      showCounts={false}
+    />
+  </div>
+  <a class:list={['w-fit font-mono text-meta text-muted-foreground', link]} href={calendar.profileUrl} target='_blank' rel='me noopener'>
+    {calendar.totalLabel} last year
+  </a>
+</figure>

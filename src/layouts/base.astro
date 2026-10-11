@@ -1,37 +1,38 @@
 ---
-import { Font } from "astro:assets";
-import "../styles/global.css";
-import { site } from "../data/site";
+import { Font } from 'astro:assets'
+
+import { site } from '../site'
+import '../global.css'
 
 interface Props {
-  title?: string;
-  description?: string;
+  title?: string
+  description?: string
 }
 
-const { title = `${site.handle} · Independent developer`, description = site.headline } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const { title = `${site.handle} · Independent developer`, description = site.headline } = Astro.props
+const canonical = new URL(Astro.url.pathname, Astro.site)
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
     <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name='description' content={description} />
+    <link rel='canonical' href={canonical} />
+    <link rel='icon' href='/favicon.svg' type='image/svg+xml' />
+    <meta name='theme-color' content='#ffffff' />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={site.handle} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary" />
+    <meta property='og:type' content='website' />
+    <meta property='og:site_name' content={site.handle} />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:url' content={canonical} />
+    <meta name='twitter:card' content='summary' />
 
-    <Font cssVariable="--font-sans" preload />
-    <Font cssVariable="--font-mono" preload />
+    <Font cssVariable='--font-geist' preload />
+    <Font cssVariable='--font-geist-mono' preload />
   </head>
   <body>
     <slot />

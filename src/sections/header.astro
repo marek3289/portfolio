@@ -1,0 +1,12 @@
+---
+import { site } from '../site'
+---
+
+<header class='flex items-center px-inset'>
+  <a class='flex items-center gap-2.5 font-medium leading-5' href='/' aria-label={`${site.handle}, home`}>
+    <span class='grid size-7 shrink-0 place-items-center rounded-mark bg-foreground leading-4 font-semibold tracking-mark text-background' aria-hidden='true'>
+      {site.monogram}
+    </span>
+    <span>{site.handle}</span>
+  </a>
+</header>

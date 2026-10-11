@@ -1,0 +1,23 @@
+---
+import ProjectRow from '../components/project-row.astro'
+import type { Project } from '@/types'
+
+interface Props {
+  id: string
+  label: string
+  projects: Project[]
+}
+
+const { id, label, projects } = Astro.props
+---
+
+<section class='flex flex-col gap-1' aria-labelledby={id}>
+  <h2 class='px-inset pb-2 font-mono text-meta font-normal tracking-label text-muted-foreground uppercase' id={id}>
+    {label}
+  </h2>
+  <ul class='flex flex-col gap-1'>
+    {projects.map((project) => (
+      <ProjectRow project={project} />
+    ))}
+  </ul>
+</section>

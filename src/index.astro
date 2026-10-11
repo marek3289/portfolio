@@ -1,0 +1,25 @@
+---
+import { Footer, Header, Intro, Projects } from '@/sections'
+import Base from '@/layouts/base.astro'
+import { EmailToaster } from '@/components/email-toaster'
+import { nowProjects, shippedProjects, site, stats } from '@/site'
+---
+
+<Base>
+  <div class='mx-auto w-[min(var(--container-column),calc(100%-48px))] pt-page-top pb-page-bottom mobile:mx-1 mobile:w-auto mobile:pt-page-top-sm mobile:pb-page-bottom-sm'>
+    <Header />
+    <main class='mt-header flex flex-col gap-block mobile:gap-block-sm'>
+      <Intro />
+      <div class='flex flex-col gap-block mobile:gap-block-sm'>
+        <Projects id='now' label='Now' projects={nowProjects} />
+        <Projects id='shipped' label='Shipped' projects={shippedProjects} />
+      </div>
+      <p class='px-inset text-link'>
+        {stats.total} projects · {stats.shipped} shipped · {stats.failed} failed · {stats.inProgress} in progress
+      </p>
+    </main>
+    <Footer />
+  </div>
+
+  <EmailToaster client:load email={site.email} />
+</Base>

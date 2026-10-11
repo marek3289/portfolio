@@ -1,159 +1,50 @@
 ---
-import ArrowUpRight from "./ArrowUpRight.astro";
-import type { Project } from "../data/projects";
+import ArrowUpRight from './arrow-up-right.astro'
+import type { Project } from '@/types'
 
 interface Props {
-  project: Project;
+  project: Project
 }
 
-const { project } = Astro.props;
-const live = project.status === "now";
-const sunset = project.status === "sunset";
-// Sunset projects are never links, even if a url is left in the data.
-const href = sunset ? undefined : project.url;
-const Tag = href ? "a" : "div";
-const linkProps = href ? { href, target: "_blank", rel: "noopener" } : {};
+const { project } = Astro.props
+const live = project.status === 'now'
+const sunset = project.status === 'sunset'
+const href = sunset ? undefined : project.url
+const Tag = href ? 'a' : 'div'
+const linkProps = href ? { href, target: '_blank', rel: 'noopener' } : {}
 ---
 
 <li>
-  <Tag class:list={["row", { sunset, link: !!href }]} {...linkProps}>
-    {live && <span class="dot" aria-hidden="true" />}
-    <span class="main">
-      <span class="name">
+  <Tag
+    class:list={[
+      'group relative flex items-center gap-4 rounded-row px-inset py-2.5 text-row transition-colors duration-150',
+      'mobile:flex-wrap mobile:items-baseline mobile:gap-x-2 mobile:gap-y-0.5 mobile:py-3',
+      href && 'pointer-fine:hover:bg-accent',
+    ]}
+    {...linkProps}
+  >
+    {live && <span class='absolute top-4.5 left-1.5 size-1.5 rounded-full bg-live mobile:top-5' aria-hidden='true' />}
+    <span class='flex min-w-0 flex-1 flex-wrap items-baseline gap-x-2 mobile:contents'>
+      <span class:list={['font-medium whitespace-nowrap mobile:order-1 mobile:basis-full', sunset && 'text-muted-foreground']}>
         {project.name}
         {href && <ArrowUpRight />}
-        {href && <span class="sr-only">(opens in a new tab)</span>}
-        {live && <span class="sr-only">(in progress)</span>}
+        {href && <span class='sr-only'>(opens in a new tab)</span>}
+        {live && <span class='sr-only'>(in progress)</span>}
       </span>
-      <span class="description">{project.description}</span>
-      {project.metric && <span class="mono extra">{project.metric}</span>}
-      {sunset && <span class="mono extra tag">Sunset</span>}
+      <span class='text-muted-foreground mobile:order-2 mobile:basis-full mobile:text-desc'>{project.description}</span>
+      {project.metric && (
+        <span class="font-mono text-meta whitespace-nowrap text-muted-foreground mobile:order-4 mobile:leading-5.5 mobile:before:content-['·_']">
+          {project.metric}
+        </span>
+      )}
+      {sunset && (
+        <span class="font-mono text-meta tracking-tag whitespace-nowrap text-muted-foreground uppercase mobile:order-4 mobile:leading-[22px] mobile:before:content-['·_']">
+          Sunset
+        </span>
+      )}
     </span>
-    <span class="mono meta">{project.type} · {project.year}</span>
+    <span class='shrink-0 text-right font-mono text-[12px] leading-5.5 whitespace-nowrap text-muted-foreground mobile:order-3 mobile:pt-0.5 mobile:text-left'>
+      {project.type} · {project.year}
+    </span>
   </Tag>
 </li>
-
-<style>
-  .row {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 10px 20px;
-    border-radius: var(--radius-row);
-    line-height: var(--leading-row);
-    transition: background-color 0.15s ease;
-  }
-
-  .row:focus-visible {
-    border-radius: var(--radius-row);
-  }
-
-  @media (hover: hover) and (min-width: 641px) {
-    .row.link:hover {
-      background: var(--color-hover);
-    }
-  }
-
-  .dot {
-    position: absolute;
-    left: 6px;
-    top: 18px;
-    width: var(--dot-size);
-    height: var(--dot-size);
-    border-radius: 50%;
-    background: var(--color-live);
-  }
-
-  .main {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    column-gap: 8px;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .name {
-    font-weight: 500;
-    white-space: nowrap;
-  }
-
-  .description {
-    color: var(--color-muted);
-  }
-
-  .extra,
-  .meta {
-    white-space: nowrap;
-  }
-
-  /* Smaller mono text: a tighter line box keeps baseline-aligned rows at 42px. */
-  .extra {
-    line-height: var(--leading-meta);
-  }
-
-  .meta {
-    line-height: var(--leading-row);
-  }
-
-  .tag {
-    letter-spacing: var(--tracking-tag);
-    text-transform: uppercase;
-  }
-
-  .meta {
-    flex-shrink: 0;
-    text-align: right;
-  }
-
-  .sunset .name {
-    color: var(--color-muted);
-  }
-
-  /* Mobile (6-Final-home-mobile): name / description / "type · year · metric".
-     The dot keeps hanging in the left padding; no hover background. */
-  @media (max-width: 640px) {
-    .row {
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 2px 8px;
-      padding: 12px var(--inset);
-    }
-
-    .dot {
-      top: 20px;
-    }
-
-    .main {
-      display: contents;
-    }
-
-    .name {
-      order: 1;
-      flex-basis: 100%;
-    }
-
-    .description {
-      order: 2;
-      flex-basis: 100%;
-      font-size: 14px;
-      line-height: 21px;
-    }
-
-    .meta {
-      order: 3;
-      padding-top: 2px;
-      text-align: left;
-    }
-
-    .extra {
-      order: 4;
-      line-height: var(--leading-row);
-    }
-
-    .extra::before {
-      content: "· ";
-    }
-  }
-</style>

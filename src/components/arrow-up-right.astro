@@ -1,23 +1,14 @@
 ---
-// "↗" link marker. Geist has no arrow glyphs, so a system fallback would render
-// it inconsistently; an inline SVG keeps it crisp and aligned with the text.
+// Geist has no arrow glyphs, so a system fallback would render "↗" inconsistently. An inline SVG stays crisp and aligned with the text.
 ---
 
-<svg class="arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-  <path d="M2.5 7.5l5-5M3.5 2.5h4v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+<svg
+  class='ml-[0.3em] inline-block size-[0.66em] align-[0.02em] transition-transform duration-150 group-hover:translate-x-px group-hover:-translate-y-px'
+  width='10'
+  height='10'
+  viewBox='0 0 10 10'
+  fill='none'
+  aria-hidden='true'
+>
+  <path d='M2.5 7.5l5-5M3.5 2.5h4v4' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'></path>
 </svg>
-
-<style>
-  .arrow {
-    display: inline-block;
-    width: 0.66em;
-    height: 0.66em;
-    margin-left: 0.3em;
-    vertical-align: 0.02em;
-    transition: transform 0.15s ease;
-  }
-
-  :global(a:hover) .arrow {
-    transform: translate(1px, -1px);
-  }
-</style>

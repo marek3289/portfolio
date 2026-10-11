@@ -1,4 +1,4 @@
-# Design spec: marqueeio portfolio
+# Design spec: portfolio
 
 Merged from Paper artboards in the "Portfolio" file, page "Portfolio EN":
 
@@ -13,16 +13,16 @@ Merge rule: where both specify the same thing, 6-Final wins. Where 6-Final is si
 
 The site is light only (decision 29). The dark values are kept for reference and are not used.
 
-| Token | Light | Dark (unused) | Source |
-|---|---|---|---|
-| `--bg` | #FFFFFF | #0E0E0E | both / Index dark |
-| `--text` | #111111 | #EDEDED | both / Index dark |
-| `--muted` (descriptions, about, meta, labels) | #6B6B6B | #8A8A8A | 6-Final / Index dark meta |
-| `--divider` | #EDEDEC | #222222 | 6-Final / Index dark |
-| `--hover` | #F3F3F2 | #1A1A1A | 6-Final / Index dark |
-| `--live` (status dot) | #22A55B | #34C77B | 6-Final / Index dark |
-| `--underline` | #D4D4D4 | #3A3A3A | 6-Final / derived |
-| `--kbd-border` | #DCDCD8 | #333333 | Index |
+| Token                                         | Light   | Dark (unused) | Source                    |
+| --------------------------------------------- | ------- | ------------- | ------------------------- |
+| `--bg`                                        | #FFFFFF | #0E0E0E       | both / Index dark         |
+| `--text`                                      | #111111 | #EDEDED       | both / Index dark         |
+| `--muted` (descriptions, about, meta, labels) | #6B6B6B | #8A8A8A       | 6-Final / Index dark meta |
+| `--divider`                                   | #EDEDEC | #222222       | 6-Final / Index dark      |
+| `--hover`                                     | #F3F3F2 | #1A1A1A       | 6-Final / Index dark      |
+| `--live` (status dot)                         | #22A55B | #34C77B       | 6-Final / Index dark      |
+| `--underline`                                 | #D4D4D4 | #3A3A3A       | 6-Final / derived         |
+| `--kbd-border`                                | #DCDCD8 | #333333       | Index                     |
 
 Fonts: Geist 400/500/600 for all text, Geist Mono 400/500 for labels, metadata and the footer.
 

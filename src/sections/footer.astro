@@ -1,0 +1,78 @@
+---
+import { Kbd } from '@/components/ui/kbd'
+import { site } from '../site'
+
+const updated = site.updated.toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' })
+---
+
+<footer
+  class='mt-block flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border px-inset pt-5 font-mono text-meta text-muted-foreground mobile:mt-block-sm mobile:gap-x-4 mobile:gap-y-1.5'
+  data-footer
+  data-email={site.email}
+  data-time-zone={site.timeZone}
+>
+  <span>Updated {updated}</span>
+  <time class='min-w-[9ch] tabular-nums' data-clock></time>
+  <span class='no-keyboard:hidden ml-auto'>Press <Kbd>C</Kbd> to copy email</span>
+</footer>
+
+<script>
+  const footer = document.querySelector<HTMLElement>('[data-footer]')
+
+  if (footer) {
+    const { timeZone } = footer.dataset
+
+    const clock = footer.querySelector<HTMLTimeElement>('[data-clock]')
+
+    if (clock) {
+      const format = new Intl.DateTimeFormat('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone,
+        timeZoneName: 'short',
+      })
+
+      const tick = () => {
+        const now = new Date()
+        clock.textContent = format.format(now)
+        clock.dateTime = now.toISOString()
+      }
+
+      tick()
+
+      setTimeout(
+        () => {
+          tick()
+          setInterval(tick, 60_000)
+        },
+        60_000 - (Date.now() % 60_000),
+      )
+    }
+
+    const email = footer.dataset.email
+
+    if (email) {
+      const onKeyDown = (event: KeyboardEvent) => {
+        if (event.key.toLowerCase() !== 'c' || event.repeat) return
+        if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return
+
+        const target = event.target
+        if (target instanceof HTMLElement && (target.isContentEditable || target.closest('input, textarea, select'))) return
+
+        const fail = () => document.dispatchEvent(new CustomEvent('email-copy-failed'))
+
+        if (!navigator.clipboard?.writeText) {
+          fail()
+          return
+        }
+
+        navigator.clipboard.writeText(email).then(
+          () => document.dispatchEvent(new CustomEvent('email-copied')),
+          fail,
+        )
+      }
+
+      document.addEventListener('keydown', onKeyDown)
+    }
+  }
+</script>
